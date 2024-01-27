@@ -1,0 +1,52 @@
+CREATE DATABASE user;
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(50) CHECK (LENGTH(password) BETWEEN 6 AND 50 AND
+                                    password REGEXP '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\da-zA-Z]).{6,}$')
+);
+
+CREATE TABLE rooms (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    room_number VARCHAR(10) NOT NULL
+);
+
+INSERT INTO rooms (room_number) VALUES
+('101'),
+('102'),
+('103');
+
+CREATE TABLE room_bookings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    room_number VARCHAR(10) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    batch VARCHAR(50) NOT NULL
+);
+
+create table redips_timetable (
+    tbl_id int(10) unsigned not null auto_increment,
+    sub_id char(2) not null,
+    tbl_row smallint(6) not null,
+    tbl_col smallint(6) not null,
+    primary key (`tbl_id`) using btree
+);
+
+
+/* create batches */
+create table redips_batch (
+    batch_id char(2) not null,
+    batch_name varchar(40) not null,
+    primary key (`batch_id`) using btree
+);
+
+/* fill batches */
+insert into redips_batch values
+('c1','C1'),
+('c2','C2'),
+('c3','C3'),
+('b4','B4'),
+('b5','B5'),
+('bsc','Bsc');

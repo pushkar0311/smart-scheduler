@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #00bcd4, #3f51b5, #673ab7);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="date"] {
+            padding: 10px;
+        }
+
+        input:focus {
+            border-color: #4caf50;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Library Management System</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Details Form</h2>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $studentName = $_POST["student_name"];
+            $studentID = $_POST["student_id"];
+            $bookTitle = $_POST["book_title"];
+            $dueDate = $_POST["due_date"];
+        }
+        ?>
+        <form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method="post">
+            <label for="student_name">Student Name:</label>
+            <input type="text" id="student_name" name="student_name" required>
+
+            <label for="student_id">Student ID:</label>
+            <input type="text" id="student_id" name="student_id" required>
+
+            <label for="book_title">Book Title:</label>
+            <input type="text" id="book_title" name="book_title" required>
+
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
